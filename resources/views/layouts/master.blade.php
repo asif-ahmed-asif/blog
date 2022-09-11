@@ -45,8 +45,8 @@ desired effect
                 @yield('header')
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> @yield('breadcrumb')</a></li>
-                <li class="active">Here</li>
+                <li><a href={{ route('admin.dashboard') }}><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active">@yield('breadcrumb')</li>
             </ol>
         </section>
 
