@@ -28,6 +28,8 @@ Route::group(['prefix' => 'admin/dashboard'],function(){
         route::prefix('categories')->group(function (){
             Route::get('/', 'index')->name('category.index');
             Route::post('/store', 'store')->name('category.store');
+            Route::any('/update', 'update')->name('category.update');
+            Route::get('/delete', 'delete')->name('category.delete');
         });
 
     });
