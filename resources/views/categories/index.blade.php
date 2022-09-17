@@ -39,7 +39,7 @@
             <td>
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary" onclick="editCategory({{ $category->id }})">Edit</button>
-                    <a href="" class="btn btn-danger">Delete</a>
+                    <a href="{{ route('category.delete', $category->id) }}" class="btn btn-danger">Delete</a>
                 </div>
             </td>
         </tr>
