@@ -5,6 +5,7 @@
 
     <div>
         @include('flash_message')
+        @include('error_message')
     </div>
 
     <div>
@@ -35,7 +36,7 @@
 
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea class="form-control" cols="40" rows="10" name="description" id="description" placeholder="Enter Post Description">
+                    <textarea class="form-control" cols="40" rows="10" name="description" id="description">
 
                     </textarea>
                 </div>
