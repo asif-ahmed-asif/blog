@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Site\SiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,15 @@ Route::group(['prefix' => 'admin/dashboard'],function(){
             Route::post('/store', 'store')->name('category.store');
             Route::any('/update', 'update')->name('category.update');
             Route::get('/delete/{id}', 'delete')->name('category.delete');
+        });
+
+    });
+    Route::controller(PostController::class)->group(function () {
+        route::prefix('post')->group(function (){
+            Route::get('/', 'index')->name('post.index');
+            Route::get('/create', 'create')->name('post.create');
+            Route::post('/store', 'store')->name('post.store');
+            Route::get('/delete/{id}', 'delete')->name('post.delete');
         });
 
     });
