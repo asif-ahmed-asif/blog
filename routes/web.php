@@ -39,6 +39,8 @@ Route::group(['prefix' => 'admin/dashboard'],function(){
             Route::get('/', 'index')->name('post.index');
             Route::get('/create', 'create')->name('post.create');
             Route::post('/store', 'store')->name('post.store');
+            Route::get('/edit/{id}', 'edit')->name('post.edit');
+            Route::post('/update/{id}', 'update')->name('post.update');
             Route::get('/delete/{id}', 'delete')->name('post.delete');
         });
 

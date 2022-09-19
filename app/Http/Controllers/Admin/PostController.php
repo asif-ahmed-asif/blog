@@ -51,6 +51,49 @@ class PostController extends Controller
         }
     }
 
+    public function edit($id){
+        $post = Post::findOrFail($id);
+        $categories = \DB::table('categories')->where('status', true)->get();
+        return view('posts.edit', compact('post', 'categories'));
+    }
+
+    public function update(Request $request, $id){
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'category_id' => 'required',
+            'image' => 'mimes:jpeg,jpg,png,gif|max:50000',
+            'status' => 'required'
+        ]);
+
+        try {
+            $post = Post::findOrFail($id);
+            if($request->hasFile('image')){
+                $image_path = public_path('storage/'.$post->image);
+
+                if(file_exists($image_path)){
+                    File::delete( $image_path);
+                }
+                $image = $request->file('image')->store('posts', 'public');
+            }else{
+                $image = $post->image;
+            }
+
+            $post->update([
+                'title' => $request->title,
+                'description' => $request->description,
+                'category_id' => $request->category_id,
+                'image' => isset($image) ? $image : 'dummy.jpg',
+                'status' => $request->status
+            ]);
+            return to_route('post.index')->with('message','Post successfully updated');
+
+
+        }catch (\Throwable $th){
+            throw $th;
+        }
+    }
+
     public function delete($id){
         $post = Post::findOrFail($id);
         $image_path = public_path('storage/'.$post->image);
