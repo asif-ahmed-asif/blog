@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -52,6 +53,11 @@ class PostController extends Controller
 
     public function delete($id){
         $post = Post::findOrFail($id);
+        $image_path = public_path('storage/'.$post->image);
+
+        if(file_exists($image_path)){
+            File::delete( $image_path);
+        }
         $post->delete();
         return to_route('post.index')->with('message','Post successfully deleted');
     }
