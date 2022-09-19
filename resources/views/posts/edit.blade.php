@@ -39,8 +39,11 @@
                         {{ $post->description }}
                     </textarea>
                 </div>
-
                 <div class="form-group">
+                    <img src="{{ asset('storage/'.$post->image) }}" width="100px" height="100px">
+                </div>
+                <div class="form-group">
+
                     <label for="image">Image</label>
                     <input type="file" name="image" id="image">
                 </div>

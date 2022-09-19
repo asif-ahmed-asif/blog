@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::controller(SiteController::class)->group(function () {
     Route::get('/', 'home');
+    Route::get('/post-detail/{id}', 'postDetails')->name('post.detail');
 });
 
 Route::group(['prefix' => 'admin/dashboard'],function(){
