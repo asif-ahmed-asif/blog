@@ -12,7 +12,7 @@
             <div class="tm-post-full">
                 <div class="mb-4">
                     <h2 class="pt-2 tm-color-primary tm-post-title">{{ $post->title }}</h2>
-                    <p class="tm-mb-40">June 16, 2020 posted by Admin Nat</p>
+                    <p class="tm-mb-40">{{ $post->created_at }} posted by Admin Nat</p>
                     <p>
                         {{ $post->description }}
                     </p>

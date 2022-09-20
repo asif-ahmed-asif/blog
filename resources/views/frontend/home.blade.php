@@ -5,7 +5,7 @@
             <hr class="tm-hr-primary">
             <a href=" {{ route('post.detail', $post->id) }}" class="effect-lily tm-post-link tm-pt-60">
                 <div class="tm-post-link-inner">
-                    <img src="{{ asset('storage/'.$post->image) }}" alt="Image" class="img-fluid" >
+                    <img style="height: 300px; width: 500px;" src="{{ asset('storage/'.$post->image) }}" alt="Image" class="img-fluid" >
                 </div>
                 <span class="position-absolute tm-new-badge">New</span>
                 <h2 class="tm-pt-30 tm-color-primary tm-post-title">{{ $post->title }}</h2>
@@ -15,7 +15,7 @@
             </p>
             <div class="d-flex justify-content-between tm-pt-45">
                 <span class="tm-color-primary">{{ $post->category_name }}</span>
-                <span class="tm-color-primary">{{ $post->created_at }}</span>
+                <span class="tm-color-primary">{{ \Carbon\Carbon::parse($post->created_at)->diffForHumans()  }}</span>
             </div>
             <hr>
             <div class="d-flex justify-content-between">

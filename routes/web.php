@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::controller(SiteController::class)->group(function () {
-    Route::get('/', 'home');
+    Route::get('/', 'home')->name('publicHome');
     Route::get('/post-detail/{id}', 'postDetails')->name('post.detail');
 });
 
