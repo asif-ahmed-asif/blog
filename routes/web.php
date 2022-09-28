@@ -22,29 +22,31 @@ Route::controller(SiteController::class)->group(function () {
     Route::get('/post-detail/{id}', 'postDetails')->name('post.detail');
 });
 
-Route::group(['prefix' => 'admin/dashboard'],function(){
-    Route::controller(AdminController::class)->group(function () {
-        Route::get('/', 'dashboard')->name('admin.dashboard');
-    });
-    Route::controller(CategoryController::class)->group(function () {
-        route::prefix('categories')->group(function (){
-            Route::get('/', 'index')->name('category.index');
-            Route::post('/store', 'store')->name('category.store');
-            Route::any('/update', 'update')->name('category.update');
-            Route::get('/delete/{id}', 'delete')->name('category.delete');
+Route::group(['prefix' => 'admin'],function(){
+    Route::middleware(['admin'])->group(function (){
+        Route::controller(AdminController::class)->group(function () {
+            Route::get('/dashboard', 'dashboard')->name('admin.dashboard');
         });
+        Route::controller(CategoryController::class)->group(function () {
+            route::prefix('categories')->group(function (){
+                Route::get('/', 'index')->name('category.index');
+                Route::post('/store', 'store')->name('category.store');
+                Route::any('/update', 'update')->name('category.update');
+                Route::get('/delete/{id}', 'delete')->name('category.delete');
+            });
 
-    });
-    Route::controller(PostController::class)->group(function () {
-        route::prefix('post')->group(function (){
-            Route::get('/', 'index')->name('post.index');
-            Route::get('/create', 'create')->name('post.create');
-            Route::post('/store', 'store')->name('post.store');
-            Route::get('/edit/{id}', 'edit')->name('post.edit');
-            Route::post('/update/{id}', 'update')->name('post.update');
-            Route::get('/delete/{id}', 'delete')->name('post.delete');
         });
+        Route::controller(PostController::class)->group(function () {
+            route::prefix('post')->group(function (){
+                Route::get('/', 'index')->name('post.index');
+                Route::get('/create', 'create')->name('post.create');
+                Route::post('/store', 'store')->name('post.store');
+                Route::get('/edit/{id}', 'edit')->name('post.edit');
+                Route::post('/update/{id}', 'update')->name('post.update');
+                Route::get('/delete/{id}', 'delete')->name('post.delete');
+            });
 
+        });
     });
+
 });
-
