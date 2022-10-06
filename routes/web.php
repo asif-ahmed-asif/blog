@@ -22,8 +22,7 @@ Route::controller(SiteController::class)->group(function () {
     Route::get('/post-detail/{id}', 'postDetails')->name('post.detail');
 });
 
-Route::group(['prefix' => 'admin'],function(){
-    Route::middleware(['admin'])->group(function (){
+Route::prefix('admin')->middleware(['admin'])->group(function(){
         Route::controller(AdminController::class)->group(function () {
             Route::get('/dashboard', 'dashboard')->name('admin.dashboard');
         });
@@ -47,6 +46,5 @@ Route::group(['prefix' => 'admin'],function(){
             });
 
         });
-    });
 
 });

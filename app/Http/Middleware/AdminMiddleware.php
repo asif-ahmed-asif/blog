@@ -16,9 +16,9 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->type == 1){
+        if (auth()->hasUser() && auth()->user()->type == 1){
             return $next($request);
         }
-        return redirect('/login')->withErrors('You do not have permission to access!');
+        return redirect('/login');
     }
 }
